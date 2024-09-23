@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Svasthydetoxdrink</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #a8e0a1, #6dcf6d);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .countdown {
+            margin-top: 20px;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .time-box {
+            margin: 0 15px;
+            text-align: center;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 2em;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .time-box span:nth-child(2) {
+            font-size: 0.5em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Coming Soon</h1>
+        <p>Get ready to refresh and rejuvenate! Svasthydetoxdrink is launching soon with nature’s finest detox drinks.</p>
+        <div class="countdown">
+            <h2>Stay Tuned!</h2>
+            <div class="timer">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <span>Days</span>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <span>Hours</span>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <span>Minutes</span>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <span>Seconds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Countdown Timer
+        const countdown = () => {
+            const launchDate = new Date("2024-12-31T00:00:00").getTime();
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(interval);
+                document.querySelector('.container').innerHTML = "<h1>We're Live!</h1><p>Thank you for your patience!</p>";
+            }
+        };
+
+        const interval = setInterval(countdown, 1000);
+    </script>
+</body>
+</html>
